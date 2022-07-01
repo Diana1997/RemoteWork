@@ -1,4 +1,7 @@
-﻿using System.Xml.Serialization;
+﻿using System.Runtime.Serialization;
+using System.Text.Json.Serialization;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace RemoteWork.Models
 {
@@ -6,6 +9,6 @@ namespace RemoteWork.Models
     public class InOrder { 
 
         [XmlElement(ElementName="OrderXml")] 
-        public string OrderXml { get; set; } 
+        public OrderXml OrderXml { get; set; }
     }
 }
