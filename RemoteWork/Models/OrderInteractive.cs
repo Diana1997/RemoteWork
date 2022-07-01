@@ -6,7 +6,6 @@ using System.Xml.Serialization;
 namespace RemoteWork.Models
 {
 
-    [XmlRoot(ElementName="OrderInteractive", Namespace = "http://adrconnect.mvrs.com/adrconnect/2013/04/")]
     public class OrderInteractive { 
 
  

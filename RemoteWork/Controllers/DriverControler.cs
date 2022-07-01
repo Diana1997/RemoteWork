@@ -30,7 +30,7 @@ namespace RemoteWork.Controllers
          
          var body = @"<Envelope xmlns=""http://schemas.xmlsoap.org/soap/envelope/"">" + "\n" +
                     @"    <Body>" + "\n" +
-                    @"        <OrderInteractive xmlns=""http://adrconnect.mvrs.com/adrconnect/2013/04/"">" + "\n" +
+                    @"    <OrderInteractive xmlns=""http://adrconnect.mvrs.com/adrconnect/2013/04/"">" + "\n" +
                     @"            <inCommunications>" + "\n" +
                     @"                <![CDATA[" + "\n" +
                     @"                <Communications>" + "\n" +
@@ -74,7 +74,7 @@ namespace RemoteWork.Controllers
                     @"</Envelope>         ";
          
         body =  XmlHelper.CreateObject();
-
+        body = body.Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", "");
          
             bytes = System.Text.Encoding.ASCII.GetBytes(body);
             request.ContentLength = bytes.Length;

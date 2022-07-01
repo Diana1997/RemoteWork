@@ -26,11 +26,12 @@ namespace RemoteWork
         {
             using (var textWriter = new StringWriter())
             {
-               var ns = new XmlSerializerNamespaces();
-              ns.Add("", ""); // Disable the xmlns:xsi and xmlns:xsd lines.*/
+              
+                var ns = new XmlSerializerNamespaces(  new[] { XmlQualifiedName.Empty });
+           // ns.Add("", ""); // Disable the xmlns:xsi and xmlns:xsd lines.*/
                 var settings = new XmlWriterSettings()
-                    { Indent = true, IndentChars = "  ", OmitXmlDeclaration = true }; // For cosmetic purposes.
-                using (var xmlWriter = XmlWriter.Create(textWriter, settings))
+                    { Indent = true, IndentChars = "  ", OmitXmlDeclaration = true }; // For cosmetic purposes.*/
+                using (var xmlWriter = XmlWriter.Create(textWriter))
                     (serializer ?? new XmlSerializer(obj.GetType())).Serialize(xmlWriter, obj, ns);
                 return textWriter.ToString();
             }

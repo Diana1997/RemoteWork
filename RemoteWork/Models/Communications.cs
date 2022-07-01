@@ -9,7 +9,7 @@ namespace RemoteWork.Models
         public string Account { get; set; } 
 
         [XmlElement(ElementName="UserID")] 
-        public int UserID { get; set; } 
+        public string UserID { get; set; } 
 
         [XmlElement(ElementName="Password")] 
         public string Password { get; set; } 

@@ -20,7 +20,7 @@ namespace RemoteWork
                         Communications = new Communications
                         {
                             Account = "K1808",
-                            UserID = 01,
+                            UserID = "01",
                             Password = "Test_123",
                             ReportTypes = new ReportTypes()
                             {
@@ -40,7 +40,7 @@ namespace RemoteWork
                                 State = new State
                                 {
                                     Abbrev = "AZ",
-                                    Full = string.Empty
+                                   // Full = string.Empty
                                 },
                                 Subtype = "ST",
                                 ProductID = "LX",
