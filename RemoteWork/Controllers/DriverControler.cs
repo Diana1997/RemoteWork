@@ -28,52 +28,8 @@ namespace RemoteWork.Controllers
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             byte[] bytes;
          
-         var body = @"<Envelope xmlns=""http://schemas.xmlsoap.org/soap/envelope/"">" + "\n" +
-                    @"    <Body>" + "\n" +
-                    @"    <OrderInteractive xmlns=""http://adrconnect.mvrs.com/adrconnect/2013/04/"">" + "\n" +
-                    @"            <inCommunications>" + "\n" +
-                    @"                <![CDATA[" + "\n" +
-                    @"                <Communications>" + "\n" +
-                    @"                    <Account>K1808</Account>" + "\n" +
-                    @"                    <UserID>01</UserID>" + "\n" +
-                    @"                    <Password>Test_123</Password>" + "\n" +
-                    @"                    <ReportTypes>" + "\n" +
-                    @"                        <Type>XML2.03</Type>" + "\n" +
-                    @"                    </ReportTypes>" + "\n" +
-                    @"                </Communications>]]>" + "\n" +
-                    @"        	</inCommunications>" + "\n" +
-                    @"	        <inOrder>" + "\n" +
-                    @"	            <OrderXml>" + "\n" +
-                    @"	                <![CDATA[" + "\n" +
-                    @"	                <Order>" + "\n" +
-                    @"						<Handling>OL</Handling>" + "\n" +
-                    @"						<Misc>Test Ref</Misc>" + "\n" +
-                    @"						<BillCode>Test BC</BillCode>" + "\n" +
-                    @"						<State>" + "\n" +
-                    @"							<Abbrev>AZ</Abbrev>" + "\n" +
-                    @"							<Full></Full>" + "\n" +
-                    @"						</State>" + "\n" +
-                    @"						<Subtype>ST</Subtype>" + "\n" +
-                    @"						<ProductID>LX</ProductID>" + "\n" +
-                    @"						<HintMvrInsuranceOption>VDETAIL</HintMvrInsuranceOption>" + "\n" +
-                    @"						<HintVertical>Insurance</HintVertical>" + "\n" +
-                    @"						<Purpose>AA</Purpose>" + "\n" +
-                    @"						<License>A20203005</License>" + "\n" +
-                    @"						<FirstName>JOHN</FirstName>" + "\n" +
-                    @"						<LastName>DOE</LastName>" + "\n" +
-                    @"						<DOB>" + "\n" +
-                    @"							<Year>1990</Year>" + "\n" +
-                    @"							<Month>06</Month>" + "\n" +
-                    @"							<Day>04</Day>" + "\n" +
-                    @"						</DOB>" + "\n" +
-                    @"					</Order>]]>" + "\n" +
-                    @"					</OrderXml>" + "\n" +
-                    @"			</inOrder>" + "\n" +
-                    @"		</OrderInteractive>" + "\n" +
-                    @"	</Body>" + "\n" +
-                    @"</Envelope>         ";
-         
-        body =  XmlHelper.CreateObject();
+
+       string body =  XmlHelper.CreateObject();
         body = body.Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", "");
          
             bytes = System.Text.Encoding.ASCII.GetBytes(body);
