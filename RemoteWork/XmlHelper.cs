@@ -8,7 +8,7 @@ namespace RemoteWork
 {
     public class XmlHelper
     {
-        public static void CreateObject()
+        public static string CreateObject()
         {
             Envelope envelope = new Envelope();
             envelope.Body = new Body
@@ -63,6 +63,7 @@ namespace RemoteWork
             };
             //var result = Serialize(envelope);
             var result2 = XmlSerializationHelper.GetXml(envelope);
+            return result2;
         }
 
 
