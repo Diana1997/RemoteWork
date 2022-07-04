@@ -8,7 +8,7 @@ namespace RemoteWork
 {
     public class XmlHelper
     {
-        public static string CreateObject()
+        public static string LX_VDetail_OrderInteractiveRequest()
         {
             Envelope envelope = new Envelope();
             envelope.Body = new Body
@@ -61,11 +61,20 @@ namespace RemoteWork
                     }
                 }
             };
-            //var result = Serialize(envelope);
             var result2 = XmlSerializationHelper.GetXml(envelope);
             return result2;
         }
 
+
+        public static void LX_VDetail_OrderInteractiveResponse(Stream stream)
+        {
+           // string xml = new StreamReader(stream).ReadToEnd();
+           XmlDocument document = new XmlDocument();
+           document.Load(stream);
+
+           var element = document.GetElementsByTagName("FormatEntity");
+           // var result = XmlSerializationHelper.ReadFromXml<Responses.Envelope>(stream);
+        }
 
         private static string Serialize(Object o)
         {

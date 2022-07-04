@@ -20,7 +20,7 @@ namespace RemoteWork.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Test()
+        public async Task<IActionResult> LX_VDetail_OrderInteractive()
         {
             try
             {
@@ -29,7 +29,7 @@ namespace RemoteWork.Controllers
             byte[] bytes;
          
 
-       string body =  XmlHelper.CreateObject();
+       string body =  XmlHelper.LX_VDetail_OrderInteractiveRequest();
         body = body.Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", "");
          
             bytes = System.Text.Encoding.ASCII.GetBytes(body);
@@ -37,9 +37,7 @@ namespace RemoteWork.Controllers
             request.Method = "POST";
             request.Headers.Add("Content-Type", "text/xml");
             request.Headers.Add("SOAPAction", "http://adrconnect.mvrs.com/adrconnect/2013/04/IAdrConnectWebService/OrderInteractive");
-            request.Headers.Add("Accept", "*/*");
-            request.Headers.Add("Accept-Encoding", "gzip, deflate, br");
-            request.Headers.Add("Connection", "keep-alive");
+         
             using (Stream requestStream = request.GetRequestStream())
             {
                  requestStream.Write(bytes, 0, bytes.Length);
@@ -52,8 +50,8 @@ namespace RemoteWork.Controllers
             if (response.StatusCode == HttpStatusCode.OK)
             {
                 Stream responseStream = response.GetResponseStream();
-                string responseStr = new StreamReader(responseStream).ReadToEnd();
-
+             //   string responseStr = new StreamReader(responseStream).ReadToEnd();
+              XmlHelper.LX_VDetail_OrderInteractiveResponse(responseStream);
             }
             
             }

@@ -58,6 +58,23 @@ namespace RemoteWork
                 return (T)(serializer ?? new XmlSerializer(typeof(T))).Deserialize(reader);
             }
         }
+        
+        public static  T  ReadFromXml<T>(Stream xml)
+        {
+            var ns = new XmlSerializerNamespaces(  new[] { XmlQualifiedName.Empty });
+            // ns.Add("", ""); // Disable the xmlns:xsi and xmlns:xsd lines.*/
+            var settings = new XmlWriterSettings()
+                { Indent = true, IndentChars = "  ", OmitXmlDeclaration = true }; // For cosmetic purposes.*/
+            
+            System.Xml.Serialization.XmlSerializer reader =
+                new System.Xml.Serialization.XmlSerializer(typeof(T));
+
+            using (StreamReader file = new StreamReader(xml))
+            {
+                T result = (T)reader.Deserialize(file);
+                return result;
+            }
+        }
     }
 
     public static class XmlSerializerFactory
