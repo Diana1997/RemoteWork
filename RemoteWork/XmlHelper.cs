@@ -3,6 +3,10 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using RemoteWork.Models;
+using RemoteWork.Responses;
+using Body = RemoteWork.Models.Body;
+using Envelope = RemoteWork.Models.Envelope;
+using State = RemoteWork.Models.State;
 
 namespace RemoteWork
 {
@@ -72,7 +76,9 @@ namespace RemoteWork
            XmlDocument document = new XmlDocument();
            document.Load(stream);
 
-           var element = document.GetElementsByTagName("FormatEntity");
+           var elements = document.GetElementsByTagName("Data");
+           var innerText = elements[0]?.FirstChild?.InnerText;
+           var response = innerText.DeserializeXML<Record>();
            // var result = XmlSerializationHelper.ReadFromXml<Responses.Envelope>(stream);
         }
 
