@@ -78,6 +78,7 @@ namespace RemoteWork
 
            var elements = document.GetElementsByTagName("Data");
            var innerText = elements[0]?.FirstChild?.InnerText;
+           innerText = innerText?.Replace("<![CDATA[", "").Replace("]]>", "");
            var response = innerText.DeserializeXML<Record>();
            // var result = XmlSerializationHelper.ReadFromXml<Responses.Envelope>(stream);
         }
