@@ -42,6 +42,6 @@ namespace RemoteWork.Models
         public string LastName { get; set; } 
 
         [XmlElement(ElementName="DOB")] 
-        public DOB DOB { get; set; } 
+        public DOB DOB { get; set; }
     }
 }
