@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RemoteWork.Responses;
 
 namespace RemoteWork.Controllers
 {
@@ -22,46 +23,10 @@ namespace RemoteWork.Controllers
         [HttpGet]
         public async Task<IActionResult> LX_VDetail_OrderInteractive()
         {
-            try
-            {
-            string url = @"https://demo2.mvrs.com/AdrConnect/AdrConnectWebService.svc";
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            byte[] bytes;
-         
-
-       string body =  XmlHelper.LX_VDetail_OrderInteractiveRequest();
-        body = body.Replace("<?xml version=\"1.0\" encoding=\"utf-16\"?>", "");
-         
-            bytes = System.Text.Encoding.ASCII.GetBytes(body);
-            request.ContentLength = bytes.Length;
-            request.Method = "POST";
-            request.Headers.Add("Content-Type", "text/xml");
-            request.Headers.Add("SOAPAction", "http://adrconnect.mvrs.com/adrconnect/2013/04/IAdrConnectWebService/OrderInteractive");
-         
-            using (Stream requestStream = request.GetRequestStream())
-            {
-                 requestStream.Write(bytes, 0, bytes.Length);
-                requestStream.Close();
-            }
-
-
-            HttpWebResponse response = (HttpWebResponse) request.GetResponse();
-
-            if (response.StatusCode == HttpStatusCode.OK)
-            {
-                Stream responseStream = response.GetResponseStream();
-             //   string responseStr = new StreamReader(responseStream).ReadToEnd();
-              XmlHelper.LX_VDetail_OrderInteractiveResponse(responseStream);
-            }
-            
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex);
-                throw;
-            }
-
-            return Ok();
+            string body = XmlService.LX_VDetail_OrderInteractiveRequest();
+            Stream response = HttpHelper.Post(body);
+            Record record = XmlService.LX_VDetail_OrderInteractiveResponse(response);
+            return Ok(record);
         }
     }
 }

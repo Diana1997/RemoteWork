@@ -10,7 +10,7 @@ using State = RemoteWork.Models.State;
 
 namespace RemoteWork
 {
-    public class XmlHelper
+    public class XmlService
     {
         public static string LX_VDetail_OrderInteractiveRequest()
         {
@@ -70,7 +70,7 @@ namespace RemoteWork
         }
 
 
-        public static void LX_VDetail_OrderInteractiveResponse(Stream stream)
+        public static Record LX_VDetail_OrderInteractiveResponse(Stream stream)
         {
            // string xml = new StreamReader(stream).ReadToEnd();
            XmlDocument document = new XmlDocument();
@@ -78,22 +78,12 @@ namespace RemoteWork
 
            var elements = document.GetElementsByTagName("Data");
            var innerText = elements[0]?.FirstChild?.InnerText;
+           innerText = innerText.Replace("<![CDATA[", "").Replace("]]>", "");
            var response = innerText.DeserializeXML<Record>();
+           return response;
            // var result = XmlSerializationHelper.ReadFromXml<Responses.Envelope>(stream);
         }
 
-        private static string Serialize(Object o)
-        {
-            //Add an empty namespace and empty value
-            // XmlSerializerNamespaces ns = new XmlSerializerNamespaces();
-
-            using (var writer = new StringWriter())
-            {
-                new XmlSerializer(o.GetType()).Serialize(writer, o);
-                return writer.ToString();
-            }
-        }
     }
 
-    //  public class 
 }
