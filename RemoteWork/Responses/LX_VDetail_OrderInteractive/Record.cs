@@ -1,14 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
-namespace RemoteWork.Responses
+namespace RemoteWork.Responses.LX_VDetail_OrderInteractive
 {
-    // using System.Xml.Serialization;
-// XmlSerializer serializer = new XmlSerializer(typeof(Record));
-// using (StringReader reader = new StringReader(xml))
-// {
-//    var test = (Record)serializer.Deserialize(reader);
-// }
 
     [XmlRoot(ElementName = "OrderDate")]
     public class OrderDate
