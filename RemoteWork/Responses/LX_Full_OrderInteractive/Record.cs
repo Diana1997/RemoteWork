@@ -497,8 +497,8 @@ public class DlRecord {
 	[XmlElement(ElementName="MessageList")] 
 	public MessageList MessageList { get; set; } 
 
-	/*[XmlElement(ElementName="EventList")] 
-	public EventList EventList { get; set; } */
+	[XmlElement(ElementName="EventList")] 
+	public EventList EventList { get; set; } 
 }
 
 [XmlRoot(ElementName="Record")]

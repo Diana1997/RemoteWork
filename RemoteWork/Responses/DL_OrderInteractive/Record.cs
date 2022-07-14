@@ -3,13 +3,6 @@ using System.Xml.Serialization;
 
 namespace RemoteWork.Responses.DL_OrderInteractive
 {
-    // using System.Xml.Serialization;
-// XmlSerializer serializer = new XmlSerializer(typeof(Record));
-// using (StringReader reader = new StringReader(xml))
-// {
-//    var test = (Record)serializer.Deserialize(reader);
-// }
-
     [XmlRoot(ElementName = "OrderDate")]
     public class OrderDate
     {
