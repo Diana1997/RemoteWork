@@ -375,18 +375,19 @@ public class DescriptionItem {
 
 	[XmlElement(ElementName="StateDescription")] 
 	public string StateDescription { get; set; } 
-
 	[XmlElement(ElementName="Acd")] 
 	public string Acd { get; set; } 
+
 
 	[XmlElement(ElementName="Avd1")] 
 	public string Avd1 { get; set; } 
 
 	[XmlElement(ElementName="TableKey")] 
 	public string TableKey { get; set; } 
+	
 
 	[XmlElement(ElementName="StateCode")] 
-	public int StateCode { get; set; } 
+	public decimal StateCode { get; set; } 
 }
 
 [XmlRoot(ElementName="DescriptionList")]
@@ -411,6 +412,7 @@ public class EventItem {
 
 	[XmlElement(ElementName="DescriptionList")] 
 	public DescriptionList DescriptionList { get; set; } 
+	
 
 	[XmlElement(ElementName="Accident")] 
 	public Accident Accident { get; set; } 
