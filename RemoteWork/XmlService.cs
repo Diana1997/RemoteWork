@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Xml;
 using System.Xml.Serialization;
 using RemoteWork.Models;
@@ -49,7 +50,7 @@ namespace RemoteWork
                                 },
                                 Subtype = "ST",
                                 ProductID = "LX",
-                                HintMvrInsuranceOption = "VDETAIL",
+                                HintMvrInsuranceOption = "Full",
                                 HintVertical = "Insurance",
                                 Purpose = "AA",
                                 License = "A20203005",
@@ -218,11 +219,24 @@ namespace RemoteWork
 
             var elements = document.GetElementsByTagName("Data");
             var innerText = elements[0]?.FirstChild?.InnerText;
-            innerText = innerText.Replace("<![CDATA[", "").Replace("]]>", "");
-            var response = innerText.DeserializeXML<Responses.LX_Full_OrderInteractive.Record>();
+            innerText = innerText.Replace("<![CDATA[", "").Replace("]]>", "").Trim();
+            var response = DeserializeXmlToObject<Responses.LX_Full_OrderInteractive.Record>(innerText);
+         //   var response = innerText.DeserializeXML<Responses.LX_Full_OrderInteractive.Record>();
             return response;
+            
+            
         }
 
+        public static T DeserializeXmlToObject<T>(string xml)
+        {
+            using (MemoryStream memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(xml)))
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                StreamReader reader = new StreamReader(memoryStream, Encoding.UTF8);
+                return (T)xmlSerializer.Deserialize(reader);
+            }
+        }
+        
         #endregion
 
         #region  LX_Activity_OrderInteractive
