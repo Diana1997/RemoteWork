@@ -3,14 +3,8 @@ using System.Collections.Generic;
 
 namespace RemoteWork.Responses.DL_SendOrders
 {
-  // using System.Xml.Serialization;
-  // XmlSerializer serializer = new XmlSerializer(typeof(Record));
-  // using (StringReader reader = new StringReader(xml))
-  // {
-  //    var test = (Record)serializer.Deserialize(reader);
-  // }
-  
-  [XmlRoot(ElementName="OrderDate")]
+
+	[XmlRoot(ElementName="OrderDate")]
   public class OrderDate { 
   
   	[XmlElement(ElementName="Year")] 

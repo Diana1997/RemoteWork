@@ -83,6 +83,20 @@ namespace RemoteWork
             var response = innerText.DeserializeXML<Responses.LX_VDetail_OrderInteractive.Record>();
             return response;
         }
+        
+        public static string LX_VDetail_OrderInteractiveResponseString(Stream stream)
+        {
+            string responseStr = new StreamReader(stream).ReadToEnd();
+            return responseStr;
+
+            /*XmlDocument document = new XmlDocument();
+            document.Load(stream);
+
+            var elements = document.GetElementsByTagName("Data");
+            var innerText = elements[0]?.FirstChild?.InnerText;
+            innerText = innerText.Replace("<![CDATA[", "").Replace("]]>", "");
+            return innerText;*/
+        }
 
 
         public static string DL_OrderInteractiveRequest()
@@ -186,6 +200,7 @@ namespace RemoteWork
                                 BillCode = "Test BC",
                                 State = new State
                                 {
+                                   // Abbrev = "AZ"
                                     Abbrev = "CA",
                                     // Full = string.Empty
                                 },
@@ -194,7 +209,8 @@ namespace RemoteWork
                                 HintMvrInsuranceOption = "Full",
                                 HintVertical = "Insurance",
                                 Purpose = "AA",
-                                License = "L2019101",
+                               License = "L2019101",
+                          // License = "A20203005",
                                 FirstName = "JOHN",
                                 LastName = "DOE",
                                 DOB = new DOB

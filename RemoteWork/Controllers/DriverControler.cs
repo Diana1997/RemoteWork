@@ -14,14 +14,23 @@ namespace RemoteWork.Controllers
     [Route("[controller]")]
     public class DriverController : ControllerBase
     {
-        
+	    [HttpGet("LX_VDetail_OrderInteractive_create_pdf")]
+	    public IActionResult LX_VDetail_OrderInteractive_Create_Pdf()
+	    {
+		    string body = XmlService.LX_VDetail_OrderInteractiveRequest();
+		    Stream response = HttpHelper.Post(body);
+		    var record = XmlService.LX_VDetail_OrderInteractiveResponseString(response);
+		    FileCreator.CreatePdf(@"D:\Pdf\test.pdf", record);
+		    return Ok(record);
+	    }
+	    
         [HttpGet("LX_VDetail_OrderInteractive")]
         public IActionResult LX_VDetail_OrderInteractive()
         {
             string body = XmlService.LX_VDetail_OrderInteractiveRequest();
             Stream response = HttpHelper.Post(body);
             Record record = XmlService.LX_VDetail_OrderInteractiveResponse(response);
-            return Ok(record);
+           return Ok(record);
         }
 
         [HttpGet("DL_OrderInteractive")]
