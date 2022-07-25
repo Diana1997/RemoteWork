@@ -30,7 +30,9 @@ namespace RemoteWork
                             Password = "Test_123",
                             ReportTypes = new ReportTypes()
                             {
-                                Type = "XML2.03"
+                               // Type = "XML2.03",
+                                
+                                Type = "HTML"
                             }
                         }
                     },
@@ -86,16 +88,17 @@ namespace RemoteWork
         
         public static string LX_VDetail_OrderInteractiveResponseString(Stream stream)
         {
-            string responseStr = new StreamReader(stream).ReadToEnd();
+            /*string responseStr = new StreamReader(stream).ReadToEnd();
             return responseStr;
+            */
 
-            /*XmlDocument document = new XmlDocument();
+            XmlDocument document = new XmlDocument();
             document.Load(stream);
 
             var elements = document.GetElementsByTagName("Data");
             var innerText = elements[0]?.FirstChild?.InnerText;
             innerText = innerText.Replace("<![CDATA[", "").Replace("]]>", "");
-            return innerText;*/
+            return innerText;
         }
 
 

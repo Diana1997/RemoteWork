@@ -20,9 +20,9 @@ namespace RemoteWork.Controllers
 		    string body = XmlService.LX_VDetail_OrderInteractiveRequest();
 		    Stream response = HttpHelper.Post(body);
 		    var record = XmlService.LX_VDetail_OrderInteractiveResponseString(response);
-		  string html =   FileCreator.XmlToHtml(record);
-		    FileCreator.CreatePdfFromHtml(html);
-		  //  FileCreator.CreatePdf(@"D:\Pdf\test.pdf", record);
+		  //string html =   FileCreator.XmlToHtml(record);
+		//    FileCreator.CreatePdfFromHtml(html);
+		 //   FileCreator.CreatePdf(@"D:\Pdf\test.pdf", record);
 		    return Ok(record);
 	    }
 	    
