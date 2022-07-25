@@ -1,7 +1,12 @@
 ﻿using System;
 using System.IO;
-using iTextSharp.text;
+using System.Text;
+using System.Xml;
+using System.Xml.Xsl;
 using iTextSharp.text.pdf;
+using Microsoft.AspNetCore.Http;
+using PdfSharp;
+using TheArtOfDev.HtmlRenderer.PdfSharp;
 
 namespace RemoteWork
 {
@@ -10,7 +15,7 @@ namespace RemoteWork
         public static void CreatePdf(string path, string xmlString)
         {
             // Create new pdf file
-            try
+            /*try
             {
                 var fs = new FileStream(path, FileMode.Create);
                 Document document = new Document(PageSize.A4, 25, 25, 30, 30);
@@ -32,7 +37,35 @@ namespace RemoteWork
             }
             catch (Exception ex)
             {
-            }
+            }*/
+        }
+
+
+        public static string XmlToHtml(string xmlStr)
+        {
+            // Creating Compiled object    
+            XslCompiledTransform objXSLTransform = new XslCompiledTransform();    
+           /* objXSLTransform.Load(xmlStr);    */
+    
+            // Creating StringBuilder object to hold html data and creates TextWriter object to hold data from XslCompiled.Transform method    
+            StringBuilder htmlOutput = new StringBuilder();    
+            TextWriter htmlWriter = new StringWriter(htmlOutput);    
+    
+            // Creating XmlReader object to read XML content    
+            XmlReader reader = XmlReader.Create(xmlStr);    
+    
+            // Call Transform() method to create html string and write in TextWriter object.    
+            objXSLTransform.Transform(reader, null, htmlWriter);    
+    
+            // Closing xmlreader object    
+            reader.Close();    
+            return htmlOutput.ToString(); 
+        }
+
+        public static void CreatePdfFromHtml(string htmlString)
+        {
+            var pdfDocument = PdfGenerator.GeneratePdf(htmlString, PageSize.A4);
+            pdfDocument.Save(@"D:\RemoteWork\test.pdf");
         }
     }
 }
