@@ -17,9 +17,10 @@ namespace RemoteWork.Controllers
 	    [HttpGet("LX_VDetail_OrderInteractive_create_pdf")]
 	    public IActionResult LX_VDetail_OrderInteractive_Create_Pdf()
 	    {
-		    string body = XmlService.LX_VDetail_OrderInteractiveRequest();
+		    string body = XmlService.DL_OrderInteractiveRequest();
 		    Stream response = HttpHelper.Post(body);
-		    var record = XmlService.LX_VDetail_OrderInteractiveResponseString(response);
+		    var record = XmlService.DL_OrderInteractiveResponseString(response);
+		    PdfHelper.createPdf(record, @"D:/Pdf/test2.pdf");
 		  //string html =   FileCreator.XmlToHtml(record);
 		//    FileCreator.CreatePdfFromHtml(html);
 		 //   FileCreator.CreatePdf(@"D:\Pdf\test.pdf", record);

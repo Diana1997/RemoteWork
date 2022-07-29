@@ -1,7 +1,5 @@
 ﻿using System;
 using System.IO;
-using iTextSharp.text;
-using iTextSharp.text.pdf;
 
 
 namespace RemoteWork
@@ -13,7 +11,7 @@ namespace RemoteWork
             // Create new pdf file
             try
             {
-                var fs = new FileStream(path, FileMode.OpenOrCreate);
+                /*var fs = new FileStream(path, FileMode.OpenOrCreate);
                 Document document = new Document(PageSize.A4, 25, 25, 30, 30);
                 // Create an instance to the PDF file by creating an instance of the PDF 
                 // Writer class using the document and the filestrem in the constructor.
@@ -29,7 +27,7 @@ namespace RemoteWork
                 document.Add(new Paragraph(xmlString));
                 document.Close();
                 writer.Close();
-                fs.Close();
+                fs.Close();*/
             }
             catch (Exception ex)
             {
